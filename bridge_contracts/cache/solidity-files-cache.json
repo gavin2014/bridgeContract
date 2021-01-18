@@ -1,0 +1,737 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/Container.sol": {
+      "lastModificationDate": 1610703220689,
+      "contentHash": "484092f1575d2836e3686fa3653d46e4",
+      "sourceName": "contracts/Container.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.7.0"
+      ],
+      "artifacts": [
+        "Container"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+      "lastModificationDate": 1610516463847,
+      "contentHash": "4d29a22b28b7ec0e89c3cdf1c5e72b83",
+      "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "SafeMath"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/node_modules/@openzeppelin/contracts/utils/Pausable.sol": {
+      "lastModificationDate": 1610516463877,
+      "contentHash": "8e1426287776ef63005695dfc289ec56",
+      "sourceName": "@openzeppelin/contracts/utils/Pausable.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../GSN/Context.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Pausable"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/node_modules/@openzeppelin/contracts/GSN/Context.sol": {
+      "lastModificationDate": 1610516463845,
+      "contentHash": "2adbd82f6d055a4751566d4671512b03",
+      "sourceName": "@openzeppelin/contracts/GSN/Context.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1610516466727,
+      "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1610516466728,
+      "contentHash": "1d93743f6ca9d2ecf9b3c26718faf610",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../../GSN/Context.sol",
+        "./IERC20.sol",
+        "../../math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/node_modules/@openzeppelin/contracts/token/ERC20/ERC20Pausable.sol": {
+      "lastModificationDate": 1610516466727,
+      "contentHash": "42c0638e45b2c33154488610fe3091fe",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20Pausable.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./ERC20.sol",
+        "../../utils/Pausable.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC20Pausable"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/ERC20Sample.sol": {
+      "lastModificationDate": 1610703877689,
+      "contentHash": "3dfd73323028a6e2c2292a4a3f191023",
+      "sourceName": "contracts/ERC20Sample.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.7.0"
+      ],
+      "artifacts": [
+        "ERC20Template"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/Bridge.sol": {
+      "lastModificationDate": 1610792851884,
+      "contentHash": "62240fd6da5b603d639737d74fb7db8f",
+      "sourceName": "contracts/Bridge.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/math/SafeMath.sol",
+        "@openzeppelin/contracts/utils/Pausable.sol",
+        "./BridgeStorage.sol",
+        "./BridgeAdmin.sol",
+        "./BridgeLogic.sol",
+        "./ERC20Sample.sol"
+      ],
+      "versionPragmas": [
+        "^0.7.0"
+      ],
+      "artifacts": [
+        "Bridge"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/BridgeStorage.sol": {
+      "lastModificationDate": 1610703198669,
+      "contentHash": "ff54f1f09cbb72c2acf8e4446fd56f43",
+      "sourceName": "contracts/BridgeStorage.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./Container.sol"
+      ],
+      "versionPragmas": [
+        "^0.7.0"
+      ],
+      "artifacts": [
+        "BridgeStorage"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/BridgeAdmin.sol": {
+      "lastModificationDate": 1610734662782,
+      "contentHash": "19c302e5367958dd88b9af83e4fdf207",
+      "sourceName": "contracts/BridgeAdmin.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./Container.sol"
+      ],
+      "versionPragmas": [
+        "^0.7.0"
+      ],
+      "artifacts": [
+        "BridgeAdmin"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/BridgeLogic.sol": {
+      "lastModificationDate": 1610703198668,
+      "contentHash": "58139aeeca9f9fa9faf4bf63449e33f2",
+      "sourceName": "contracts/BridgeLogic.sol",
+      "solcConfig": {
+        "version": "0.7.1",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/math/SafeMath.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "./BridgeStorage.sol"
+      ],
+      "versionPragmas": [
+        "^0.7.0"
+      ],
+      "artifacts": [
+        "BridgeLogic"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/silyHUSD/husd.sol": {
+      "lastModificationDate": 1610723722135,
+      "contentHash": "d573075b3cf1efebf2d2e7510ebe6464",
+      "sourceName": "contracts/silyHUSD/husd.sol",
+      "solcConfig": {
+        "version": "0.5.16",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.5.0"
+      ],
+      "artifacts": [
+        "Blacklist",
+        "BlacklistAdminRole",
+        "CoinFactory",
+        "CoinFactoryAdminRole",
+        "ERC20",
+        "ERC20Pausable",
+        "HUSD",
+        "IERC20",
+        "Ownable",
+        "Pausable",
+        "PauserRole",
+        "Roles",
+        "SafeMath"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/testToken/normalERC20.sol": {
+      "lastModificationDate": 1610789327946,
+      "contentHash": "4a1a595390354c50e0dff63f3ffe6210",
+      "sourceName": "contracts/testToken/normalERC20.sol",
+      "solcConfig": {
+        "version": "0.6.6",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.6"
+      ],
+      "artifacts": [
+        "normalERC20"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/testToken/ERC20Sample.sol": {
+      "lastModificationDate": 1610779314303,
+      "contentHash": "587ba1a1a527f48d100f11a83771e324",
+      "sourceName": "contracts/testToken/ERC20Sample.sol",
+      "solcConfig": {
+        "version": "0.6.6",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20Pausable.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.6"
+      ],
+      "artifacts": [
+        "ERC20test"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/testToken/Facatory.sol": {
+      "lastModificationDate": 1610779346239,
+      "contentHash": "b5268a0f7f90ccfed6951ba12540b28b",
+      "sourceName": "contracts/testToken/Facatory.sol",
+      "solcConfig": {
+        "version": "0.6.6",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./ERC20Sample.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.6"
+      ],
+      "artifacts": [
+        "ERC20Factory"
+      ]
+    }
+  }
+}

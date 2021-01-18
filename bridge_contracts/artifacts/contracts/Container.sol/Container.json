@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "Container",
+  "sourceName": "contracts/Container.sol",
+  "abi": [],
+  "bytecode": "0x608060405260ff600055348015601457600080fd5b50603f8060226000396000f3fe6080604052600080fdfea2646970667358221220a1c0a57fbee55f6d022a1f2894dc005e5835c3b1ceaf6b2b3ebc2505146d2c0064736f6c63430007010033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220a1c0a57fbee55f6d022a1f2894dc005e5835c3b1ceaf6b2b3ebc2505146d2c0064736f6c63430007010033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
