@@ -23,7 +23,7 @@ describe("HecoBridge", function() {
 
 
         const Bridge = await ethers.getContractFactory("Bridge",deployer);
-        bridge=await Bridge.deploy([owner1.address,owner2.address,owner3.address],1,husd.address);
+        bridge=await Bridge.deploy([owner1.address,owner2.address,owner3.address],1);
         await bridge.deployed();
 
         const BridgeLogic = await ethers.getContractFactory("BridgeLogic",deployer);
@@ -119,10 +119,15 @@ describe("HecoBridge", function() {
         expect(token.balanceOf(tester1.address),10000);
         
         // trasnfer token ownership to bridge 
-
         let tx3 = await erc20factory.connect(deployer).changeTokenUser(token_address,bridge.address,bridge.address);
+        
 
+        // //add burn/mint selector into bridge 
+        // //burn(address account , uint256 amount)
+        method_str= "burn(address,uint256)"
+        let tx4 = await bridge.connect(operator1).setDepositSelector(token_address,method_str,false);
 
+        console.log(await bridge.depositSelector(token_address));
 
         let depositEvent = new Promise((resolve,reject)=>{
             bridge.on("DepositToken",(from,value,tokenadd,targetAddress,chain)=>{
@@ -140,10 +145,10 @@ describe("HecoBridge", function() {
         });
 
 
-        //no need allow.
-        let tx4 = await bridge.connect(tester1).depositToken(token_address,100,tester2.address,"houchain");
+        // //no need allow.
+        let tx5 = await bridge.connect(tester1).depositToken(token_address,100,tester2.address,"houchain");
         
-        let event = await depositEvent;
+         let event = await depositEvent;
         // console.log(depositEvent);
 
         expect(event.from,tester1.address);
@@ -151,8 +156,8 @@ describe("HecoBridge", function() {
         expect(event.chain, "houchain");
         expect(event.token, token_address);
 
-        // console.log((await token.balanceOf(tester1.address)).toString());
-        // console.log((await token.totalSupply()).toString());
+        console.log((await token.balanceOf(tester1.address)).toString());
+        console.log((await token.totalSupply()).toString());
 
     });
 
@@ -179,4 +184,5 @@ describe("HecoBridge", function() {
     //     expect(balance, BigNumber.from(1));
 
     // });
+
 });

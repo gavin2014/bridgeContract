@@ -67,8 +67,7 @@ contract BridgeAdmin is Container {
         return operatorRequireNum;
     }
 
-    function resetRequiredNum(string memory class, uint256 requiredNum)
-    public onlyOwner returns (bool){
+    function resetRequiredNum(string memory class, uint256 requiredNum) public onlyOwner returns (bool){
         bytes32 classHash = getClassHash(class);
         require((classHash == OPERATORHASH) || (classHash == OWNERHASH), "wrong class");
 
@@ -93,9 +92,7 @@ contract BridgeAdmin is Container {
         return true;
     }
 
-
-    function modifyAddress(string memory class, address oldAddress, address newAddress)
-    internal onlyOwner returns (bool){
+    function modifyAddress(string memory class, address oldAddress, address newAddress) internal onlyOwner returns (bool){
         bytes32 classHash = getClassHash(class);
         bytes32 taskHash = keccak256(abi.encodePacked("modifyAddress", class, oldAddress, newAddress));
         addItemAddress(taskHash, msg.sender);
@@ -114,8 +111,7 @@ contract BridgeAdmin is Container {
         return classHash;
     }
 
-    function dropAddress(string memory class, address oneAddress)
-    public onlyOwner returns (bool){
+    function dropAddress(string memory class, address oneAddress) public onlyOwner returns (bool){
         bytes32 classHash = getClassHash(class);
         require(classHash != STOREHASH && classHash != LOGICHASH, "wrong class");
         require(itemAddressExists(classHash, oneAddress), "no such address exist");
@@ -132,11 +128,9 @@ contract BridgeAdmin is Container {
             return true;
         }
         return false;
-
     }
 
-    function addAddress(string memory class, address oneAddress)
-    public onlyOwner returns (bool){
+    function addAddress(string memory class, address oneAddress) public onlyOwner returns (bool){
         bytes32 classHash = getClassHash(class);
         require(classHash != STOREHASH && classHash != LOGICHASH, "wrong class");
 
@@ -151,9 +145,7 @@ contract BridgeAdmin is Container {
         return false;
     }
 
-
-    function dropTask(bytes32 taskHash)
-    public onlyOwner returns (bool){
+    function dropTask(bytes32 taskHash) public onlyOwner returns (bool){
         removeItem(taskHash);
         emit AdminTaskDropped(taskHash);
         return true;

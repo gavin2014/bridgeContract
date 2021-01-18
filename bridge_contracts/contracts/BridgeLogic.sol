@@ -3,6 +3,7 @@ pragma solidity ^0.7.0;
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./BridgeStorage.sol";
+import "./BridgeAdmin.sol";
 
 contract BridgeLogic {
     using SafeMath for uint256;
@@ -41,7 +42,6 @@ contract BridgeLogic {
         return address(store);
     }
 
-
     function supportTask(uint256 taskType, bytes32 taskHash, address oneAddress, uint256 requireNum) external onlyCaller returns(uint256){
         require(!store.supporterExists(taskHash, oneAddress), "supporter already exists");
         (uint256 theTaskType,uint256 theTaskStatus,uint256 theSupporterNum) = store.getTaskInfo(taskHash);
@@ -67,4 +67,6 @@ contract BridgeLogic {
         store.setTaskInfo(taskHash, theTaskType, theTaskStatus);
         return theTaskStatus;
     }
+
+
 }

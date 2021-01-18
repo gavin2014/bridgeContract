@@ -2,7 +2,7 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/Container.sol": {
-      "lastModificationDate": 1610703220689,
+      "lastModificationDate": 1610980415839,
       "contentHash": "484092f1575d2836e3686fa3653d46e4",
       "sourceName": "contracts/Container.sol",
       "solcConfig": {
@@ -357,8 +357,8 @@
       ]
     },
     "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/Bridge.sol": {
-      "lastModificationDate": 1610792851884,
-      "contentHash": "62240fd6da5b603d639737d74fb7db8f",
+      "lastModificationDate": 1610980663789,
+      "contentHash": "8f134682aa6a132911a0a0c88037da2f",
       "sourceName": "contracts/Bridge.sol",
       "solcConfig": {
         "version": "0.7.1",
@@ -452,8 +452,8 @@
       ]
     },
     "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/BridgeAdmin.sol": {
-      "lastModificationDate": 1610734662782,
-      "contentHash": "19c302e5367958dd88b9af83e4fdf207",
+      "lastModificationDate": 1610977727082,
+      "contentHash": "4867d230df1f89cb95075dc5a3ec038b",
       "sourceName": "contracts/BridgeAdmin.sol",
       "solcConfig": {
         "version": "0.7.1",
@@ -497,8 +497,8 @@
       ]
     },
     "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/BridgeLogic.sol": {
-      "lastModificationDate": 1610703198668,
-      "contentHash": "58139aeeca9f9fa9faf4bf63449e33f2",
+      "lastModificationDate": 1610977727083,
+      "contentHash": "652c42489e0638affd60cd8569c5e851",
       "sourceName": "contracts/BridgeLogic.sol",
       "solcConfig": {
         "version": "0.7.1",
@@ -534,68 +534,14 @@
       "imports": [
         "@openzeppelin/contracts/math/SafeMath.sol",
         "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "./BridgeStorage.sol"
+        "./BridgeStorage.sol",
+        "./BridgeAdmin.sol"
       ],
       "versionPragmas": [
         "^0.7.0"
       ],
       "artifacts": [
         "BridgeLogic"
-      ]
-    },
-    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/silyHUSD/husd.sol": {
-      "lastModificationDate": 1610723722135,
-      "contentHash": "d573075b3cf1efebf2d2e7510ebe6464",
-      "sourceName": "contracts/silyHUSD/husd.sol",
-      "solcConfig": {
-        "version": "0.5.16",
-        "settings": {
-          "evmVersion": "istanbul",
-          "optimizer": {
-            "enabled": false,
-            "runs": 0
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "devdoc",
-                "userdoc",
-                "storageLayout",
-                "evm.gasEstimates"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          },
-          "metadata": {
-            "useLiteralContent": true
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.5.0"
-      ],
-      "artifacts": [
-        "Blacklist",
-        "BlacklistAdminRole",
-        "CoinFactory",
-        "CoinFactoryAdminRole",
-        "ERC20",
-        "ERC20Pausable",
-        "HUSD",
-        "IERC20",
-        "Ownable",
-        "Pausable",
-        "PauserRole",
-        "Roles",
-        "SafeMath"
       ]
     },
     "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/testToken/normalERC20.sol": {
@@ -731,6 +677,61 @@
       ],
       "artifacts": [
         "ERC20Factory"
+      ]
+    },
+    "/Users/hou/Documents/work/heco_bridge/bridge_contracts/contracts/HUSD/husd.sol": {
+      "lastModificationDate": 1610723722135,
+      "contentHash": "d573075b3cf1efebf2d2e7510ebe6464",
+      "sourceName": "contracts/HUSD/husd.sol",
+      "solcConfig": {
+        "version": "0.5.16",
+        "settings": {
+          "evmVersion": "istanbul",
+          "optimizer": {
+            "enabled": false,
+            "runs": 0
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.5.0"
+      ],
+      "artifacts": [
+        "Blacklist",
+        "BlacklistAdminRole",
+        "CoinFactory",
+        "CoinFactoryAdminRole",
+        "ERC20",
+        "ERC20Pausable",
+        "HUSD",
+        "IERC20",
+        "Ownable",
+        "Pausable",
+        "PauserRole",
+        "Roles",
+        "SafeMath"
       ]
     }
   }

@@ -12,7 +12,6 @@ contract Bridge is BridgeAdmin, Pausable {
     using SafeMath for uint256;
 
     string public constant name = "Bridge";
-    address public husd;
 
     BridgeLogic private logic;
 
@@ -33,35 +32,26 @@ contract Bridge is BridgeAdmin, Pausable {
         _;
     }
 
-
     modifier positiveValue(uint _value) {
         require(_value > 0, "value need > 0");
         _;
     }
 
-
-    constructor(address[] memory _owners, uint _ownerRequired,address husdAddress) {
+    constructor(address[] memory _owners, uint _ownerRequired) {
         initAdmin(_owners, _ownerRequired);
-        husd = husdAddress;
+
     }
 
     function depositNative(string memory _targetAddress, string memory  chain) public payable {
         emit DepositNative(msg.sender, msg.value, _targetAddress,chain);
     }
 
-    function depositToken(address _token, uint value, string memory _targetAddress, string memory chain) public {
-        ERC20Template erc20 = ERC20Template(_token);
-        if (_token == husd){
-            erc20.redeem(msg.sender,value);
-        }
-        else{
-            try erc20.burn(msg.sender,value){}
-            catch{
-            erc20.transferFrom(msg.sender, address(this), value);  
-            }
-        }
+    function depositToken(address _token, uint value, string memory _targetAddress, string memory chain) public returns (bool){
+        //deposit(address token, address _from, uint256 _value) 
+        bool res = depositTokenLogic(_token,  msg.sender, value);
         emit DepositToken(msg.sender, value, _token, _targetAddress, chain);
-    }// TODO test it.
+        return res;
+    }// 
 
     function withdrawNative(address payable to, uint value, string memory proof, bytes32 taskHash) public
     onlyOperator
@@ -69,16 +59,16 @@ contract Bridge is BridgeAdmin, Pausable {
     positiveValue(value)
     returns(bool)
     {
-        require(address(this).balance >= value, "contract has not enough native");
+        require(address(this).balance >= value, "not enough native token");
         require(taskHash == keccak256((abi.encodePacked(to,value,proof))),"taskHash is wrong");
         uint256 status = logic.supportTask(logic.WITHDRAWTASK(), taskHash, msg.sender, operatorRequireNum);
 
         if (status == logic.TASKPROCESSING()){
             emit WithdrawingNative(to, value, proof);
         }else if (status == logic.TASKDONE()) {
-            to.transfer(value);
             emit WithdrawingNative(to, value, proof);
             emit WithdrawDoneNative(to, value, proof);
+            to.transfer(value);
         }
         return true;
     }
@@ -90,28 +80,22 @@ contract Bridge is BridgeAdmin, Pausable {
     returns (bool)
     {
         ERC20Template erc20 = ERC20Template(_token);
-        require(erc20.balanceOf(address(this)) >= value, "contract has not enough erc20");
+        require(erc20.balanceOf(address(this)) >= value, "not enough erc20");
         require(taskHash == keccak256((abi.encodePacked(to,value,proof))),"taskHash is wrong");
         uint256 status = logic.supportTask(logic.WITHDRAWTASK(), taskHash, msg.sender, operatorRequireNum);
 
         if (status == logic.TASKPROCESSING()){
             emit WithdrawingToken(to, _token, value, proof);
         }else if (status == logic.TASKDONE()) {
-            if (_token == husd){//husd only
-                erc20.issue(to,value);
-            } 
-            else{
-                try erc20.mint(to,value){}
-                catch{
-                    erc20.transfer(to, value);  
-                } 
-            }
+            // withdraw(address token, address _to, address _value)
+            bool res = withdrawTokenLogic( _token, to, value);
+
             emit WithdrawingToken(to, _token, value, proof);
             emit WithdrawDoneToken(to, _token, value, proof);
+            return res;
         }
         return true;
     }
-
 
     function modifyAdminAddress(string memory class, address oldAddress, address newAddress) public whenPaused {
         require(newAddress != address(0x0), "wrong address");
@@ -141,4 +125,64 @@ contract Bridge is BridgeAdmin, Pausable {
         _unpause();
     }
 
+    function setDepositSelector(address token, string memory method, bool _isValueFirst) onlyOperator external{
+        depositSelector[token] = assetSelector(method,_isValueFirst);
+    }
+
+    function setWithdrawSelector(address token, string memory method, bool _isValueFirst) onlyOperator external{
+        withdrawSelector[token] = assetSelector(method,_isValueFirst);
+    }
+
+    struct assetSelector{
+        string selector;
+        bool isValueFirst;
+    }
+
+    mapping (address=>assetSelector)  public depositSelector;
+    mapping (address=> assetSelector) public withdrawSelector;
+
+    function depositTokenLogic(address token, address _from, uint256 _value) internal returns(bool){
+        // no asset in logic address , be cool with public interface.
+        // bytes memory tempEmptyStringTest = bytes(depositSelector[token].selector);
+        if (bytes(depositSelector[token].selector).length == 0){
+
+            //standard asset, use transferFrom;
+            IERC20 atoken = IERC20(token);
+            bool success = atoken.transferFrom(_from,address(this),_value);
+            require(success,"transferFrom failed");
+        }
+        else{
+            bool status = false;
+            assetSelector memory aselector = depositSelector[token];
+            if (aselector.isValueFirst){
+                (status,) = token.call(abi.encodeWithSignature(aselector.selector,_value,_from));
+            }
+            else {
+                (status,)= token.call(abi.encodeWithSignature(aselector.selector,_from,_value));
+            }
+            require(status);
+        }
+        return true;
+    }
+
+    function withdrawTokenLogic(address token, address _to, uint256 _value) internal returns(bool){
+        bool status = false;
+        if (bytes(depositSelector[token].selector).length==0){
+            IERC20 atoken = IERC20(token);
+            bool success = atoken.transfer(_to,_value);
+            
+            require(success,"transfer failed");
+        }
+        else{
+            assetSelector memory aselector = withdrawSelector[token];
+            if (aselector.isValueFirst){
+                (status,) = token.call(abi.encodeWithSignature( aselector.selector,_value,_to));
+            }
+            else {
+                (status,)= token.call(abi.encodeWithSignature(aselector.selector,_to,_value));
+            }
+            require(status);
+        }
+        return true;
+    }
 }
