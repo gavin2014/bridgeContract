@@ -79,8 +79,6 @@ contract Bridge is BridgeAdmin, Pausable {
     positiveValue(value)
     returns (bool)
     {
-        ERC20Template erc20 = ERC20Template(_token);
-        //require(erc20.balanceOf(address(this)) >= value, "not enough erc20"); TODO: consider it  move or del?
         require(taskHash == keccak256((abi.encodePacked(to,value,proof))),"taskHash is wrong");
         uint256 status = logic.supportTask(logic.WITHDRAWTASK(), taskHash, msg.sender, operatorRequireNum);
 
@@ -160,35 +158,43 @@ contract Bridge is BridgeAdmin, Pausable {
         }
         else{
             bool status = false;
+            bytes memory returnedData;
             assetSelector memory aselector = depositSelector[token];
             if (aselector.isValueFirst){
-                (status,) = token.call(abi.encodeWithSignature(aselector.selector,_value,_from));
+                (status, returnedData) = token.call(abi.encodeWithSignature(aselector.selector,_value,_from));
             }
             else {
-                (status,)= token.call(abi.encodeWithSignature(aselector.selector,_from,_value));
+                (status,returnedData)= token.call(abi.encodeWithSignature(aselector.selector,_from,_value));
             }
-            require(status);
+            require(
+            status && (returnedData.length == 0 || abi.decode(returnedData, (bool))),
+            ' transfer failed'
+            );
         }
         return true;
     }
 
     function withdrawTokenLogic(address token, address _to, uint256 _value) internal returns(bool){
         bool status = false;
+        bytes memory returnedData;
         if (bytes(withdrawSelector[token].selector).length==0){
             IERC20 atoken = IERC20(token);
             bool success = atoken.transfer(_to,_value);
             
-            require(success,"transfer failed");
+            require(success,"withdraw failed");
         }
         else{
             assetSelector memory aselector = withdrawSelector[token];
             if (aselector.isValueFirst){
-                (status,) = token.call(abi.encodeWithSignature( aselector.selector,_value,_to));
+                (status,returnedData) = token.call(abi.encodeWithSignature( aselector.selector,_value,_to));
             }
             else {
-                (status,)= token.call(abi.encodeWithSignature(aselector.selector,_to,_value));
+                (status,returnedData)= token.call(abi.encodeWithSignature(aselector.selector,_to,_value));
             }
-            require(status);
+            require(
+            status && (returnedData.length == 0 || abi.decode(returnedData, (bool))),
+            'withdraw failed'
+            );
         }
         return true;
     }
