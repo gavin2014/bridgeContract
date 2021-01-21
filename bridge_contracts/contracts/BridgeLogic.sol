@@ -67,6 +67,10 @@ contract BridgeLogic {
         store.setTaskInfo(taskHash, theTaskType, theTaskStatus);
         return theTaskStatus;
     }
+    function removeTask(bytes32 taskHash)  external onlyCaller {
+        store.removeTask(taskHash);
+
+    }
 
 
 }

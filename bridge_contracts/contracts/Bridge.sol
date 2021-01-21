@@ -69,6 +69,7 @@ contract Bridge is BridgeAdmin, Pausable {
             emit WithdrawingNative(to, value, proof);
             emit WithdrawDoneNative(to, value, proof);
             to.transfer(value);
+            logic.removeTask(taskHash);
         }
         return true;
     }
@@ -90,6 +91,7 @@ contract Bridge is BridgeAdmin, Pausable {
 
             emit WithdrawingToken(to, _token, value, proof);
             emit WithdrawDoneToken(to, _token, value, proof);
+            logic.removeTask(taskHash);
             return res;
         }
         return true;

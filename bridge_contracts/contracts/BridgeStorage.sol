@@ -35,4 +35,7 @@ contract BridgeStorage is Container {
     function removeAllSupporter(bytes32 taskHash) external onlyCaller {
         removeItemAddresses(taskHash);
     }
+    function removeTask(bytes32 taskHash)external onlyCaller{
+        removeItem(taskHash);
+    }
 }
