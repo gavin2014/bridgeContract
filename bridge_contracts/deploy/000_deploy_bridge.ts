@@ -12,14 +12,13 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const signer1=account_getter("SIGNER1");
   const signer2=account_getter("SIGNER2");
   const signer3=account_getter("SIGNER3");
-  const husd =account_getter("HUSD");
   // console.log(signer1,signer2,signer3);
   const deployResult=await deploy(contract_name,
     {
       from:adeployer,
       log:true,
       deterministicDeployment: false,
-      args:[[signer1,signer2,signer3],1,husd],
+      args:[[signer1,signer2,signer3],1],
     });
   save_to_json(contract_name,{"address":deployResult.address,"tx":deployResult.transactionHash});
 

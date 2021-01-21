@@ -94,7 +94,7 @@ task ("initbridge","link these contracts", async (args,hre)=>{
     let tx2 = await bridge.connect(signer1).addAddress("operator",operator2);
     await tx2.wait();
 
-    console.log("operator set alreadys\n",tx1.hash,"\n",tx2.hash);
+    console.log("operator setting \n",tx1.hash,"\n",tx2.hash);
     assert([operator1,operator2],await bridge.connect(signer1).getAdminAddresses("operator"));
 
   }
@@ -107,21 +107,7 @@ task ("initbridge","link these contracts", async (args,hre)=>{
 });
 
 
-// task ("deploy contract","init deploy account", async (args,hre)=>{
-//   var url=node_url("HECO") 
-//   // const HecoBridge = await ethers.getContractFactory("HECOBridge");
-  
-//   const hecoBridge = await ethers.getContractAt("HECOBridge",getAddress("HECOBridge"));
 
-//   var signer1 =new ethers.Wallet(account_getter("SIGNER1_PRIVATE")); 
-//   //var signer1= account_getter("SIGNER1_PRIVATE"); 
-//   hecoBridge.connect(signer1).addAddress("operator",signer1.address);
-  
-
-
-
-
-// });
 
 
 const config: HardhatUserConfig = {

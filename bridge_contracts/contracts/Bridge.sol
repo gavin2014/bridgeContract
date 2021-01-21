@@ -80,7 +80,7 @@ contract Bridge is BridgeAdmin, Pausable {
     returns (bool)
     {
         ERC20Template erc20 = ERC20Template(_token);
-        require(erc20.balanceOf(address(this)) >= value, "not enough erc20");
+        //require(erc20.balanceOf(address(this)) >= value, "not enough erc20"); TODO: consider it  move or del?
         require(taskHash == keccak256((abi.encodePacked(to,value,proof))),"taskHash is wrong");
         uint256 status = logic.supportTask(logic.WITHDRAWTASK(), taskHash, msg.sender, operatorRequireNum);
 
@@ -125,6 +125,14 @@ contract Bridge is BridgeAdmin, Pausable {
         _unpause();
     }
 
+
+    function transferToken(address token, address to , uint256 value) onlyPauser external{
+        IERC20 atoken = IERC20(token);
+        bool success = atoken.transfer(to,value);
+        require(success,"transfer failed");
+    }
+
+
     function setDepositSelector(address token, string memory method, bool _isValueFirst) onlyOperator external{
         depositSelector[token] = assetSelector(method,_isValueFirst);
     }
@@ -132,6 +140,7 @@ contract Bridge is BridgeAdmin, Pausable {
     function setWithdrawSelector(address token, string memory method, bool _isValueFirst) onlyOperator external{
         withdrawSelector[token] = assetSelector(method,_isValueFirst);
     }
+
 
     struct assetSelector{
         string selector;
@@ -142,8 +151,6 @@ contract Bridge is BridgeAdmin, Pausable {
     mapping (address=> assetSelector) public withdrawSelector;
 
     function depositTokenLogic(address token, address _from, uint256 _value) internal returns(bool){
-        // no asset in logic address , be cool with public interface.
-        // bytes memory tempEmptyStringTest = bytes(depositSelector[token].selector);
         if (bytes(depositSelector[token].selector).length == 0){
 
             //standard asset, use transferFrom;
@@ -167,7 +174,7 @@ contract Bridge is BridgeAdmin, Pausable {
 
     function withdrawTokenLogic(address token, address _to, uint256 _value) internal returns(bool){
         bool status = false;
-        if (bytes(depositSelector[token].selector).length==0){
+        if (bytes(withdrawSelector[token].selector).length==0){
             IERC20 atoken = IERC20(token);
             bool success = atoken.transfer(_to,_value);
             
