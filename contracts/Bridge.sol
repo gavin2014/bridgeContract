@@ -131,7 +131,6 @@ contract Bridge is BridgeAdmin, Pausable {
     function transferToken(address token, address to , uint256 value) onlyPauser external{
         IERC20 atoken = IERC20(token);
         bool success = atoken.transfer(to,value);
-        require(success,"transfer failed");
     }
 
 
@@ -153,16 +152,12 @@ contract Bridge is BridgeAdmin, Pausable {
     mapping (address=> assetSelector) public withdrawSelector;
 
     function depositTokenLogic(address token, address _from, uint256 _value) internal returns(bool){
+        bool status = false;
+        bytes memory returnedData;
         if (bytes(depositSelector[token].selector).length == 0){
-
-            //standard asset, use transferFrom;
-            IERC20 atoken = IERC20(token);
-            bool success = atoken.transferFrom(_from,address(this),_value);
-            require(success,"transferFrom failed");
+            (status,returnedData)= token.call(abi.encodeWithSignature("transferFrom(address,address,uint256)",_from,this,_value));
         }
         else{
-            bool status = false;
-            bytes memory returnedData;
             assetSelector memory aselector = depositSelector[token];
             if (aselector.isValueFirst){
                 (status, returnedData) = token.call(abi.encodeWithSignature(aselector.selector,_value,_from));
@@ -170,11 +165,10 @@ contract Bridge is BridgeAdmin, Pausable {
             else {
                 (status,returnedData)= token.call(abi.encodeWithSignature(aselector.selector,_from,_value));
             }
-            require(
-            status && (returnedData.length == 0 || abi.decode(returnedData, (bool))),
-            ' transfer failed'
-            );
         }
+        require(
+            status && (returnedData.length == 0 || abi.decode(returnedData, (bool))),
+            ' transfer failed');
         return true;
     }
 
@@ -182,10 +176,7 @@ contract Bridge is BridgeAdmin, Pausable {
         bool status = false;
         bytes memory returnedData;
         if (bytes(withdrawSelector[token].selector).length==0){
-            IERC20 atoken = IERC20(token);
-            bool success = atoken.transfer(_to,_value);
-            
-            require(success,"withdraw failed");
+            (status,returnedData)= token.call(abi.encodeWithSignature("transfer(address,uint256)",_to,_value));
         }
         else{
             assetSelector memory aselector = withdrawSelector[token];
@@ -195,11 +186,9 @@ contract Bridge is BridgeAdmin, Pausable {
             else {
                 (status,returnedData)= token.call(abi.encodeWithSignature(aselector.selector,_to,_value));
             }
-            require(
-            status && (returnedData.length == 0 || abi.decode(returnedData, (bool))),
-            'withdraw failed'
-            );
         }
+
+        require(status && (returnedData.length == 0 || abi.decode(returnedData, (bool))),'withdraw failed');
         return true;
     }
 }
